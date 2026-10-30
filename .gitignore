@@ -2,9 +2,17 @@
 .agents/
 simulador_prestamos/.agents/
 
-# Carpetas de planificación
+# Carpetas de planificación y roles
 Planificacion_proyecto/
 Planificacion Proyectos/
+Roles_and_skills/
+roles_and_skills/
+
+# Archivos de notas y reglas en la raíz
+Apuntes*.md
+Guia_de_estudio*.md
+plan_materia*.md
+GEMINI.md
 
 # Caché y archivos compilados de Python
 __pycache__/
