@@ -20,6 +20,7 @@ CONFIG_POR_DEFECTO = {
     "carpeta_exportacion": "",
     "incluir_logo_pdf": True,
     "incluir_pie_pdf": True,
+    "api_key": "",
 }
 
 MAPEO_AJUSTE_FUENTE = {
@@ -68,7 +69,27 @@ def cargar_configuracion() -> dict:
 def guardar_configuracion(dict_config: dict) -> str:
     """Guarda el diccionario de configuracion en JSON y retorna la ruta."""
     ruta_archivo = _ruta_archivo_config()
-    datos_limpios = {clave: dict_config.get(clave, valor) for clave, valor in CONFIG_POR_DEFECTO.items()}
+
+    # Cargar configuracion actual para no sobrescribir claves existentes como api_key
+    datos_actuales = {}
+    if os.path.exists(ruta_archivo):
+        try:
+            with open(ruta_archivo, "r", encoding="utf-8") as archivo:
+                contenido = json.load(archivo)
+                if isinstance(contenido, dict):
+                    datos_actuales = contenido
+        except Exception:
+            datos_actuales = {}
+
+    datos_limpios = dict(CONFIG_POR_DEFECTO)
+    datos_limpios.update(datos_actuales)
+
+    for clave, valor in dict_config.items():
+        if clave in CONFIG_POR_DEFECTO:
+            # Si se pasa una clave valida, se actualiza respetando la clave si no es vacia
+            if clave != "api_key" or (clave == "api_key" and valor):
+                datos_limpios[clave] = valor
+
     with open(ruta_archivo, "w", encoding="utf-8") as archivo:
         json.dump(datos_limpios, archivo, indent=2, ensure_ascii=False)
     return os.path.abspath(ruta_archivo)

@@ -1,0 +1,20 @@
+# Entornos y agentes
+.agents/
+
+# Caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Carpetas de planificación
+Planificacion_proyecto/
+Planificacion Proyectos/
+../Planificacion_proyecto/
+../Planificacion Proyectos/
+
+# Archivos Markdown en gui
+gui/*.md
+gui/**/*.md
+
+# Archivos de configuración local y credenciales
+config.json
