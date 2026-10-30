@@ -1,0 +1,21 @@
+# Entornos y agentes locales
+.agents/
+simulador_prestamos/.agents/
+
+# Carpetas de planificación
+Planificacion_proyecto/
+Planificacion Proyectos/
+
+# Caché y archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Archivos de configuración local y credenciales
+config.json
+simulador_prestamos/config.json
+
+# Documentación interna / explicaciones en gui
+simulador_prestamos/gui/*.md
+simulador_prestamos/gui/**/*.md
